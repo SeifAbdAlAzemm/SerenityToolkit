@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@serenity-is/corelib": "^8.8.3",
+    "jquery": "^3.7.1",
+    "slickgrid": "^5.15.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.32"
+  }
+}

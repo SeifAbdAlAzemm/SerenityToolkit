@@ -1,0 +1,70 @@
+@inject Serenity.Navigation.INavigationModelFactory NavigationModelFactory
+<!DOCTYPE html>
+@{
+	Func<string, HtmlString> json = x => new HtmlString(Serenity.JSON.Stringify(x));
+	var hideNav = (string)Context.Request.Query["hideNav"] == "1";
+	var sidebarPaneCollapsed = Context?.Request?.Cookies?["SidebarPaneCollapsed"] == "1" ? " s-sidebar-pane-collapsed" : "";
+}
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" class="@(hideNav ? " no-navigation" : "")">
+<head>
+	<partial name="_LayoutHead" />
+	@RenderSection("Head", required: false)
+	<title>@(ViewData["Title"]) - HosbitalSerenity</title>
+
+</head>
+<body id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) @(sidebarPaneCollapsed)">
+	<div id="PageBackground" style="display: none"></div>
+
+	@if (hideNav)
+	{
+		<script type="text/javascript">
+			$(function () {
+			@RenderSection("PageInitScript", required: false)
+			});
+		</script>
+		<div id="page-outer-nonav">
+			<div id="page-container" class="page-container-common">
+				@RenderBody()
+			</div>
+		</div>
+	}
+	else
+	{
+		<partial name="@nameof(MVC.Views.Shared._Sidebar)" model="@(NavigationModelFactory.Create())" />
+
+		<main class="s-main">
+			<section class="content">
+				@if (IsSectionDefined("ContentHeader"))
+				{
+					<section class="content-header">
+						@RenderSection("ContentHeader", required: false)
+					</section>
+				}
+
+				@RenderBody()
+			</section>
+		</main>
+	}
+
+	<!-- 🔹 Warning Message for exit impersonation -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+			function confirmExitImpersonation() {
+				Swal.fire({
+					title: "Exit Impersonation?",
+					text: "Are you sure you want to exit impersonation and return to your original user session?",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#3085d6",
+					cancelButtonColor: "#d33",
+					confirmButtonText: "Yes, exit now!",
+					cancelButtonText: "Cancel"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						window.location.href = "/Services/Administration/ImpersonateUser/ExitImpersonation";
+					}
+				});
+			}
+	</script>
+</body>
+</html>

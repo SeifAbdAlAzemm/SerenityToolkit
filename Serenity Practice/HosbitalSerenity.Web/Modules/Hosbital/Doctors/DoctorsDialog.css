@@ -1,0 +1,35 @@
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid > .grid-container {
+  height: 350px;
+  background-color: #f9f9f9;
+}
+
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .slick-viewport,
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .grid-canvas {
+  width: 100% !important;
+}
+
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .slick-row {
+  background-color: #fff;
+  transition: background-color 0.2s ease-in-out;
+}
+
+
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .slick-row:hover {
+  background-color: #e6f7ff;
+}
+
+
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .slick-header-column {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+}
+
+.s-Hosbital-DoctorsDialog .s-DoctorPatientGrid .slick-cell {
+  padding: 8px;
+  text-align: left;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+}
