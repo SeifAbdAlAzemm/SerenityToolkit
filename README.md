@@ -30,6 +30,8 @@ This repository documents various tasks implemented in a Serenity.is-based proje
 5. [Implemented Toggle Read-Only Mode for Patients Form](#26-toggle-read-only-mode-for-patients-form)
 6. [Created Gender-Specific Tabs in Patients Grid](#27-create-gender-specific-tabs-in-the-patients-grid)
 7. [Applied Different Background Colors Based on Gender](#23-applying-different-background-colors-to-male-and-female-patients-in-the-grid)
+8. [Implemented Editable Columns with Dynamic Updates](#29-implemented-editable-columns-with-dynamic-updates-in-patients-grid)
+9. [Added Inline Delete Buttons for Each Row](#30-added-inline-delete-buttons-for-each-row-in-patients-grid)
 
 ### Data Management
 1. [Added Age Field to Patients Table](#5-added-age-field-to-the-patients-table)
@@ -629,6 +631,174 @@ public int? PatientId { get; set; }
 - Used the `FilterField` and `FilterValue` properties of `LookupEditor`
 - Set the filter to show only male patients (Gender = 1).
 
+### 29. Implemented Editable Columns with Dynamic Updates in Patients Grid
+```typescript
+protected getColumns() {
+    var columns = super.getColumns();
+
+    // Configure editable columns
+    var patientInput = ctx => this.stringInputFormatter(ctx);
+    Q.first(columns, x => x.field == PatientsRow.Fields.Cost).format = patientInput;
+    Q.first(columns, x => x.field == PatientsRow.Fields.LoyalityYears).format = patientInput;
+
+    return columns;
+}
+
+private pendingChanges: { [key: string]: any } = {};
+
+private stringInputFormatter(ctx) {
+    var klass = 'edit string';
+    var item = ctx.item as PatientsRow;
+    var pending = this.pendingChanges[item.PatientId];
+
+    // Highlight changed fields that aren't saved yet
+    if (pending && pending[ctx.column.field] !== undefined) {
+        klass += ' dirty';
+    }
+
+    var value = this.getEffectiveValue(item, ctx.column.field) as string;
+
+    return "<input type='text' style='width: 100%; background-color: #fff; color: #000;' class='" + klass +
+        "' data-field='" + ctx.column.field +
+        "' value='" + Q.htmlEncode(value) +
+        "' maxlength='" + ctx.column.sourceItem.maxLength + "'/>";
+}
+
+private getEffectiveValue(item, field): any {
+    var change = this.pendingChanges[item.PatientId];
+
+    if (change && change[field] !== undefined) {
+        return change[field];
+    }
+
+    return item[field];
+}
+
+private inputsChange(e: JQueryEventObject) {
+    var cell = this.slickGrid.getCellFromEvent(e);
+    var item = this.itemAt(cell.row);
+    var input = $(e.target);
+    var field = input.data('field');
+    var text = Q.trimToNull(input.val());
+    var pending = this.pendingChanges[item.PatientId];
+    var effective = this.getEffectiveValue(item, field);
+    var oldText = effective as string;
+
+    var value = text;
+    if (!pending) {
+        this.pendingChanges[item.PatientId] = pending = {};
+    }
+
+    pending[field] = value;
+    item[field] = value;
+
+    input.val(value).addClass('dirty');
+
+    this.setSaveButtonState();
+}
+
+private setSaveButtonState() {
+    this.toolbar.findButton('apply-changes-button').toggleClass('disabled',
+        Object.keys(this.pendingChanges).length === 0);
+}
+
+private saveClick() {
+    if (Object.keys(this.pendingChanges).length === 0) {
+        return;
+    }
+    
+    var keys = Object.keys(this.pendingChanges);
+    var current = -1;
+    var self = this;
+
+    (function saveNext() {
+        if (++current >= keys.length) {
+            self.refresh();
+            self.setSaveButtonState();
+            $(".dirty").removeClass('dirty');
+            Q.notifySuccess(Q.text("Controls.EntityDialog.SaveSuccessMessage"));
+            return;
+        }
+
+        var key = keys[current];
+        var entity = Q.deepClone(self.pendingChanges[key]);
+        entity.PatientId = key;
+        Q.serviceRequest(PatientsService.Methods.Update, {
+            EntityId: key,
+            Entity: entity
+        }, (response) => {
+            delete self.pendingChanges[key];
+            saveNext();
+        });
+    })();
+}
+```
+- Implemented inline editing for Cost and Loyalty Years columns in the Patients grid
+- Added dirty tracking to highlight fields that have been changed but not saved
+- Created a method to apply changes to the server when the save button is clicked
+- Implemented dynamic calculation of the Total Cost based on the modified values
+
+### 30. Added Inline Delete Buttons for Each Row in Patients Grid
+```typescript
+protected getColumns() {
+    var columns = super.getColumns();
+
+    // Add delete button column at the beginning
+    columns.unshift({
+        field: "Q.text('Controls.EntityDialog.DeleteButton')",
+        name: '',
+        format: ctx => '<a class="inline-action delete-row" title="delete">' +
+            '<i class="fa fa-trash-o text-danger"></i></a>',
+        width: 20,
+    });
+
+    // Configure other columns...
+    
+    return columns;
+}
+
+protected onClick(e: JQueryEventObject, row: number, cell: number) {
+    super.onClick(e, row, cell);
+
+    var item = this.itemAt(row);
+    var target = $(e.target);
+
+    if (target.parent().hasClass('inline-action'))
+        target = target.parent();
+
+    if (target.hasClass('inline-action')) {
+        e.preventDefault();
+
+        if (target.hasClass('delete-row')) {
+            Q.confirm("Are you sure you want to delete this record?", () => {
+                var items = this.getItems();
+               
+                if (!item || !item.PatientId) {
+                    Q.notifyError("Invalid record selected for deletion.");
+                    return;
+                }
+
+                new Promise((resolve, reject) => {
+                    PatientsService.Delete({
+                        EntityId: item.PatientId
+                    }, (response) => {
+                        items.splice(row, 1);
+                        this.setItems(items);
+                        Q.notifySuccess("Record deleted successfully.");
+                        resolve(response);
+                    }, {
+                        onError: () => reject("Failed to delete record."),
+                    });
+                });
+            });
+        }
+    }
+}
+```
+- Added a delete button column at the beginning of the Patients grid
+- Implemented a click handler to confirm and process deletion requests
+- Added immediate visual feedback by removing the row from the grid after successful deletion
+- Displayed appropriate success and error notifications to the user
 
 ## 🚀 Getting Started
 
