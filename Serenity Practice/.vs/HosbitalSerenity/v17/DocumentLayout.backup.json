@@ -1,10 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Work\\GitHub\\HosbitalSerenity\\",
+  "WorkspaceRootPath": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|c:\\work\\github\\hosbitalserenity\\hosbitalserenity.web\\modules\\hosbital\\doctors\\doctorsdialog.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|solutionrelative:hosbitalserenity.web\\modules\\hosbital\\doctors\\doctorsdialog.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|c:\\work\\projects\\serenity practice\\github\\serenitytoolkit\\serenity practice\\hosbitalserenity.web\\modules\\administration\\user\\usergrid.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|solutionrelative:hosbitalserenity.web\\modules\\administration\\user\\usergrid.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|c:\\work\\projects\\serenity practice\\github\\serenitytoolkit\\serenity practice\\hosbitalserenity.web\\modules\\hosbital\\patients\\patientsgrid.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|solutionrelative:hosbitalserenity.web\\modules\\hosbital\\patients\\patientsgrid.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|c:\\work\\projects\\serenity practice\\github\\serenitytoolkit\\serenity practice\\hosbitalserenity.web\\modules\\hosbital\\patients\\patientsgrid.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{19A4A7F0-6B64-4C8B-950C-51DE3E082260}|HosbitalSerenity.Web\\HosbitalSerenity.Web.csproj|solutionrelative:hosbitalserenity.web\\modules\\hosbital\\patients\\patientsgrid.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DoctorsDialog.tsx",
-              "DocumentMoniker": "C:\\Work\\GitHub\\HosbitalSerenity\\HosbitalSerenity.Web\\Modules\\Hosbital\\Doctors\\DoctorsDialog.tsx",
-              "RelativeDocumentMoniker": "HosbitalSerenity.Web\\Modules\\Hosbital\\Doctors\\DoctorsDialog.tsx",
-              "ToolTip": "C:\\Work\\GitHub\\HosbitalSerenity\\HosbitalSerenity.Web\\Modules\\Hosbital\\Doctors\\DoctorsDialog.tsx",
-              "RelativeToolTip": "HosbitalSerenity.Web\\Modules\\Hosbital\\Doctors\\DoctorsDialog.tsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PatientsGrid.css",
+              "DocumentMoniker": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.css",
+              "RelativeDocumentMoniker": "HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.css",
+              "ToolTip": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.css",
+              "RelativeToolTip": "HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-13T08:13:47.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PatientsGrid.tsx",
+              "DocumentMoniker": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.tsx",
+              "RelativeDocumentMoniker": "HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.tsx",
+              "ToolTip": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.tsx",
+              "RelativeToolTip": "HosbitalSerenity.Web\\Modules\\Hosbital\\Patients\\PatientsGrid.tsx",
+              "ViewState": "AgIAAOkAAAAAAAAAAAAAAAsBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2025-02-25T07:18:52.259Z",
+              "WhenOpened": "2025-03-13T08:13:48.353Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserGrid.ts",
+              "DocumentMoniker": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Administration\\User\\UserGrid.ts",
+              "RelativeDocumentMoniker": "HosbitalSerenity.Web\\Modules\\Administration\\User\\UserGrid.ts",
+              "ToolTip": "C:\\Work\\Projects\\Serenity practice\\GitHub\\SerenityToolkit\\Serenity Practice\\HosbitalSerenity.Web\\Modules\\Administration\\User\\UserGrid.ts",
+              "RelativeToolTip": "HosbitalSerenity.Web\\Modules\\Administration\\User\\UserGrid.ts",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwCAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2025-02-27T08:08:24.407Z",
               "EditorCaption": ""
             }
           ]

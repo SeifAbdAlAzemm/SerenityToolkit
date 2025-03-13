@@ -3,8 +3,8 @@ import { Lookup, resolveUrl, tryFirst } from "@serenity-is/corelib";
 import * as Q from '@serenity-is/corelib';
 import { UserDialog } from "./UserDialog";
 import { UserRow, UserColumns, UserService, RoleRow } from "../../ServerTypes/Administration";
-import jQuery from "jquery";
 import type { JQuery } from "jquery"; 
+import { ImpersonateUserDialog } from "./ImpersonateUserDialog";
 
 @Decorators.registerClass()
 export class UserGrid extends EntityGrid<UserRow, any> {
@@ -30,6 +30,22 @@ export class UserGrid extends EntityGrid<UserRow, any> {
     protected override createIncludeDeletedButton() {
     }
 
+    protected getButtons() {
+        let buttons = super.getButtons();
+        var dlg = new ImpersonateUserDialog();
+        if (Authorization.hasPermission("Administration:ImpersonateUser")) {
+            buttons.push({
+                title: "Impersonate",
+                cssClass: "impersonate-button",
+                icon: "fa-user-secret",
+                onClick: () => {
+                    dlg.dialogOpen();
+                }
+            });
+        }
+
+        return buttons;
+    }
 
     protected override getColumns() {
         var columns = super.getColumns();
