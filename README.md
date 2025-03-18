@@ -854,9 +854,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Seif Abd Al-Azem**
-- 🌐 [GitHub](https://github.com/yourusername)
-- 📧 [Email](mailto:your.email@example.com)
-- 💼 [LinkedIn](https://linkedin.com/in/yourusername)
+- 🌐 [GitHub](https://github.com/SeifAbdAlAzemm)
+- 📧 [Email](mailto:seif.abdalazem2001@gmail.com)
+- 💼 [LinkedIn](https://www.linkedin.com/in/seif-abd-al-azem-a99b061b0/)
 
 ---
 
